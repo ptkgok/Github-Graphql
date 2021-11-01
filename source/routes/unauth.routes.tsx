@@ -9,7 +9,7 @@ const UnauthenticatedStack = createNativeStackNavigator()
 const UnauthenticatedRoutes: React.FC = () => {
   return (
     <UnauthenticatedStack.Navigator>
-      <UnauthenticatedStack.Screen name="Login" component={LoginScreen} />
+      <UnauthenticatedStack.Screen name="Login" options={{ headerShown: false }} component={LoginScreen} />
     </UnauthenticatedStack.Navigator>
   )
 }

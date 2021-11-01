@@ -26,3 +26,13 @@ The idea is to create an app where users can log in with their github accounts, 
 **Source**
 
 [Figma](https://www.figma.com/file/uR0fFDDioCfd8uZVQnpHWW/Teste-Front-End-(Mobile)?node-id=1%3A189)
+
+
+-- Lista de coisas pra query
+
+org
+name
+username
+city
+stars
+avatarUrl

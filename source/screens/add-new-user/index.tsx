@@ -13,7 +13,7 @@ import CleanCache from '../../utils/clean-cache';
 import { AuthenticatedContext } from '../../infra/context/authenticated';
 
 
-const LoginScreen: React.FC = ({ navigation }) => {
+const AddUserScreen: React.FC = ({ navigation }) => {
   const [login, setLogin] = React.useState('');
   const { setUser } = useContext(AuthenticatedContext)
 
@@ -33,11 +33,6 @@ const LoginScreen: React.FC = ({ navigation }) => {
       <Image source={Logo} width={197.85} height={80} style={{ position: 'absolute', top: "15%" }} />
       <GridColumn>
         <GridColumn>
-          {data && <Image source={{ uri: data.user.avatarUrl }} style={{ width: 50, height: 50 }} />}
-          <Text>{data && data.user.login}</Text>
-
-          <CleanCache navigation={navigation} />
-
           <Text>{error && error.message}</Text>
           <Text>{loading && "loading"}</Text>
           <FontsTheme.Title margin="10px 0%" children="Buscar usuário" />
@@ -55,4 +50,4 @@ const LoginScreen: React.FC = ({ navigation }) => {
   )
 }
 
-export default LoginScreen;
+export default AddUserScreen;

@@ -1,7 +1,6 @@
-import { GridRow } from '../../../components/templates/grids';
 import React from 'react';
-import { Image, Text, View, } from 'react-native';
 import * as S from './styles';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Input: React.FC = ({ ...rest }) => {
   return (

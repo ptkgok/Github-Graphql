@@ -7,20 +7,21 @@ import BaseTemplate from '../../components/templates/base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthenticatedContext } from '../../infra/context/authenticated';
 import CleanCache from '../../utils/clean-cache';
+import Card from '../../components/molecules/card';
+import CardList from '../../components/organisms/card-list';
+import { FakeCards } from '../../utils/fake-cards';
 
 const HomeScreen: React.FC = ({ navigation }) => {
 
-  const { loading, error, data } = useQuery(GET_REPOSITORIES)
   const { user } = useContext(AuthenticatedContext)
-
-  if (loading) return <Text>Loading...</Text>;
-  if (error) return <Text>Error</Text>;
-
+  console.log(user)
 
   return (
     <BaseTemplate>
       <CleanCache navigation={navigation} />
       <Text>{user?.login}</Text>
+      {/* <Card card={{ username: user?.login, name: user?.name,   }} /> */}
+      <CardList cards={FakeCards} />
     </BaseTemplate>
   )
 }
