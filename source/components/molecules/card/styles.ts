@@ -18,6 +18,8 @@ export const Informations = styled.Text`
   line-height: 15px;
   color: #7E7E7E;
   margin-left: 4px;
+  overflow: hidden;
+  flex-shrink: 1;
 `
 
 export const Name = styled.Text`

@@ -4,6 +4,7 @@ import AddUserScreen from '../screens/add-new-user';
 import { HeaderTheme } from '../components/theme';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import RepositoriesOfUsers from '../screens/repositories-of-user';
+import { HeaderAuthenticatedTheme } from '../components/theme/header.theme';
 
 const AuthenticatedStack = createNativeStackNavigator()
 
@@ -14,8 +15,8 @@ const AuthenticatedRoutes: React.FC = () => {
         component={HomeScreen}
         options={HeaderTheme}
       />
-      <AuthenticatedStack.Screen name="AddUser" component={AddUserScreen} />
-      <AuthenticatedStack.Screen name="RepositoriesOfUsers" component={RepositoriesOfUsers} />
+      <AuthenticatedStack.Screen name="AddUser" component={AddUserScreen} options={{ headerShown: false }} />
+      <AuthenticatedStack.Screen name="RepositoriesOfUsers" component={RepositoriesOfUsers} options={HeaderAuthenticatedTheme} />
     </AuthenticatedStack.Navigator>
   )
 }

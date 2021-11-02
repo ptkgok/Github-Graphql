@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { InitRealm } from '../../infra/realm';
 import React, { createContext, useEffect } from 'react';
 
 interface IAuthenticatedContext {
@@ -15,9 +16,12 @@ export const AuthenticatedProvider: React.FC = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const userString: any = await AsyncStorage.getItem('@user_github');
-      const user = JSON.parse(userString);
-      setUser(user);
+      // const userString: any = await AsyncStorage.getItem('@user_github');
+      // const user = JSON.parse(userString);
+      const realm = await InitRealm()
+      const user = realm.objects('User')
+
+      user.length > 0 && setUser(user)
     })()
   }, [])
 

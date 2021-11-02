@@ -3,10 +3,11 @@ export const UserSchema = {
   properties: {
     id: { type: "string", indexed: true },
     name: "string?",
-    username: "string?",
+    login: "string?",
     avatarUrl: "string?",
     company: "string?",
-    location: "string?"
+    location: "string?",
+    starredRepositories: "int?",
   },
   primaryKey: "id",
 }

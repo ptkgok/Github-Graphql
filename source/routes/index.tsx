@@ -4,7 +4,7 @@ import AuthenticatedRoutes from './auth.routes';
 import UnauthenticatedRoutes from './unauth.routes';
 
 const Routes: React.FC = () => {
-  const { authenticated, user } = useContext(AuthenticatedContext)
+  const { user } = useContext(AuthenticatedContext)
 
   return user ? <AuthenticatedRoutes /> : <UnauthenticatedRoutes />
 }

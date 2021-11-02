@@ -1,5 +1,5 @@
 import React, { useCallback, useContext } from 'react';
-import { Image, Text } from 'react-native';
+import { Image, Text, TouchableOpacity } from 'react-native';
 import { useLazyQuery } from '@apollo/client';
 import Button from '../../components/atoms/button';
 import Logo from '../../assets/github_logo.png'
@@ -12,38 +12,40 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import CleanCache from '../../utils/clean-cache';
 import { AuthenticatedContext } from '../../infra/context/authenticated';
 import { InitRealm } from '../../infra/realm';
+import { ArrowBackIcon } from '../../assets/icons';
 
 
 const AddUserScreen: React.FC = ({ navigation }) => {
   const [login, setLogin] = React.useState('');
-  const { setUser } = useContext(AuthenticatedContext)
 
   const [getUser, { loading, error, data }] = useLazyQuery(GET_USERS);
-
-  const handleLogin = useCallback(async () => {
-    const user = JSON.stringify(data.user);
-    await AsyncStorage.setItem('@user_github', user)
-    setUser(data.user)
-  }, [data])
 
   if (data) {
     (async () => {
       const realm = await InitRealm()
+      const user = {
+        ...data.user,
+        starredRepositories: data.user.starredRepositories.totalCount
+      };
       realm.write(() => {
-        realm.create('User', data.user)
+        realm.create('User', user)
       })
+      navigation.reset({ routes: [{ name: 'Home' }] });
     })()
   }
 
   return (
     <LoginTemplate>
-      <Image source={Logo} width={197.85} height={80} style={{ position: 'absolute', top: "15%" }} />
+      <TouchableOpacity onPress={() => navigation.goBack()} style={{ position: 'absolute', top: "10%", left: 25 }}>
+        <Image source={ArrowBackIcon} width={32} height={32} />
+      </TouchableOpacity>
+      <Image source={Logo} width={197.85} height={80} style={{ position: 'absolute', top: "20%", left: 25 }} />
       <GridColumn>
         <GridColumn>
           <Text>{error && error.message}</Text>
           <Text>{loading && "loading"}</Text>
           <FontsTheme.Title margin="10px 0%" children="Buscar usuário" />
-          <FontsTheme.Description children="Crie sua conta através do seu usuário do GitHub" />
+          <FontsTheme.Description children="Adicione seus novos usuários do GitHub" />
         </GridColumn>
         <GridRow margin="10% 0%">
           <Input placeholder="@username" onChangeText={(text) => setLogin(text)} />

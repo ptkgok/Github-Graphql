@@ -11,6 +11,7 @@ import { GET_USERS } from '../../infra/graphql/querys/get-users';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CleanCache from '../../utils/clean-cache';
 import { AuthenticatedContext } from '../../infra/context/authenticated';
+import { InitRealm } from '../../infra/realm';
 
 
 const LoginScreen: React.FC = ({ navigation }) => {
@@ -22,6 +23,16 @@ const LoginScreen: React.FC = ({ navigation }) => {
   const handleLogin = useCallback(async () => {
     const user = JSON.stringify(data.user);
     await AsyncStorage.setItem('@user_github', user)
+
+    const realm = await InitRealm()
+    const newUser = {
+      ...data.user,
+      starredRepositories: data.user.starredRepositories.totalCount
+    };
+    realm.write(() => {
+      realm.create('User', newUser)
+    })
+
     setUser(data.user)
   }, [data])
 
@@ -32,12 +43,8 @@ const LoginScreen: React.FC = ({ navigation }) => {
     <LoginTemplate>
       <Image source={Logo} width={197.85} height={80} style={{ position: 'absolute', top: "15%" }} />
       <GridColumn>
+        <CleanCache />
         <GridColumn>
-          {data && <Image source={{ uri: data.user.avatarUrl }} style={{ width: 50, height: 50 }} />}
-          <Text>{data && data.user.login}</Text>
-
-          <CleanCache navigation={navigation} />
-
           <Text>{error && error.message}</Text>
           <Text>{loading && "loading"}</Text>
           <FontsTheme.Title margin="10px 0%" children="Buscar usuário" />

@@ -16,10 +16,12 @@ export const Avatar = styled.View`
   width: 24px;
   height: 24px;
   border-radius: 100px;
-  background: #e5e5e5;
+  background: #fff;
   margin-right: 8px;
   position: absolute;
   left: 16px;
+  justify-content: center;
+  align-items: center;
 `
 
 export const Field = styled.TextInput`

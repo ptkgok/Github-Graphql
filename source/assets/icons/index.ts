@@ -7,6 +7,7 @@ import LanguageIcon from './language.png'
 import DeleteIcon from './delete.png'
 import SupervisorAccount from './supervisor_account.png'
 import AccessTimeIcon from './access_time.png'
+import ArrowBackIcon from './arrow_back.png'
 
 export {
   AvatarIcon,
@@ -17,5 +18,6 @@ export {
   LanguageIcon,
   DeleteIcon,
   SupervisorAccount,
-  AccessTimeIcon
+  AccessTimeIcon,
+  ArrowBackIcon
 }

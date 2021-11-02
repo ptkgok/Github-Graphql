@@ -10,7 +10,7 @@ import CardRepositories from '../../components/molecules/card-repositories';
 const RepositoriesOfUsers: React.FC = ({ route, navigation }) => {
 
   const { login } = route.params
-
+  console.log(login)
   const { data, error, loading } = useQuery(GET_REPOSITORIES, { variables: { login } })
 
   if (loading) return <Text>Loading...</Text>

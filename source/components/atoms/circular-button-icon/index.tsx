@@ -8,9 +8,9 @@ interface Props {
   active?: boolean;
 }
 
-const CircularButtonWithIcon: React.FC<Props> = ({ icon, active }) => {
+const CircularButtonWithIcon: React.FC<Props> = ({ icon, active, ...rest }) => {
   return (
-    <ButtonStyle.Container active={active}>
+    <ButtonStyle.Container active={active} {...rest}>
       {icon}
     </ButtonStyle.Container>
   )
