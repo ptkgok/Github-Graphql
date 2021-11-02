@@ -1,26 +1,31 @@
 import Button from '../../components/atoms/button';
 import React, { useContext, useEffect, useState } from 'react';
-import { Text } from 'react-native';
-import { useQuery } from '@apollo/client';
-import { GET_REPOSITORIES } from '../../infra/graphql/querys/get-repositories';
 import BaseTemplate from '../../components/templates/base';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthenticatedContext } from '../../infra/context/authenticated';
-import CleanCache from '../../utils/clean-cache';
-import Card from '../../components/molecules/card';
 import CardList from '../../components/organisms/card-list';
 import { FakeCards } from '../../utils/fake-cards';
-
+import { InitRealm } from '../../infra/realm';
 const HomeScreen: React.FC = ({ navigation }) => {
 
   const { user } = useContext(AuthenticatedContext)
-  console.log(user)
+  const [users, setUsers] = useState([])
+
+  console.log(users)
+
+  useEffect(() => {
+    async function loadRepositories() {
+      const realm = await InitRealm();
+
+      const data = realm.objects('User');
+
+      setUsers(data);
+    }
+
+    loadRepositories();
+  }, [])
 
   return (
     <BaseTemplate>
-      <CleanCache navigation={navigation} />
-      <Text>{user?.login}</Text>
-      {/* <Card card={{ username: user?.login, name: user?.name,   }} /> */}
       <CardList cards={FakeCards} />
     </BaseTemplate>
   )

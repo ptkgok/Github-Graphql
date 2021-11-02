@@ -26,11 +26,19 @@ export const GridRow = styled.View`
 `
 
 export const GridColumn = styled.View`
-  width: 100%;
+  width: ${props => props.width || "100%"};
   flex-direction: column;
   justify-content: ${(props: Props) => props.justify || 'center'};
   align-items: ${(props: Props) => props.align || 'flex-start'};
 
   margin: ${(props: Props) => props.margin || 0};
   padding: ${(props: Props) => props.padding || 0};
+`
+
+export const Row = styled.View`
+  flex-direction: row;
+  justify-content: ${(props: Props) => props.justify || 'space-between'};
+  align-items: ${(props: Props) => props.align || 'flex-start'};
+  padding: ${(props: Props) => props.padding || 0};
+  margin: ${(props: Props) => props.margin || 0};
 `

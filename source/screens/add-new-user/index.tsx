@@ -11,6 +11,7 @@ import { GET_USERS } from '../../infra/graphql/querys/get-users';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CleanCache from '../../utils/clean-cache';
 import { AuthenticatedContext } from '../../infra/context/authenticated';
+import { InitRealm } from '../../infra/realm';
 
 
 const AddUserScreen: React.FC = ({ navigation }) => {
@@ -25,8 +26,14 @@ const AddUserScreen: React.FC = ({ navigation }) => {
     setUser(data.user)
   }, [data])
 
-  if (data) handleLogin()
-
+  if (data) {
+    (async () => {
+      const realm = await InitRealm()
+      realm.write(() => {
+        realm.create('User', data.user)
+      })
+    })()
+  }
 
   return (
     <LoginTemplate>

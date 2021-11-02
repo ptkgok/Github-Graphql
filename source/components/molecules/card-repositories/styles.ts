@@ -21,15 +21,31 @@ export const Title = styled.Text`
 
 export const Description = styled.Text`
   font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 18px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  margin-bottom: 8px;
 
-color: #000000;
+  color: #000000;
+`
+
+export const Informations = styled.Text`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 15px;
+  color: #7E7E7E;
+  margin-left: 4px;
 `
 
 export const Tags = styled.View`
   background: rgba(0, 0, 0, 0.08);
+  border-radius: 100px;
+  padding: 5px;
+  margin-right: 5px;
+`
+export const ButtonStar = styled.TouchableOpacity`
+  background: ${props => props.active ? "rgba(255, 199, 0, 0.16)" : "#F5F5F5"} ;
   border-radius: 100px;
   padding: 5px;
 `
