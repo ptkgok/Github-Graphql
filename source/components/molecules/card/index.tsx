@@ -1,6 +1,6 @@
 import { GridColumn, GridRow, Row } from '../../../components/templates/grids';
 import { Title } from '../../../components/theme/fonts.theme';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Image, RefreshControl, Text, View } from 'react-native';
 
 import * as CardStyle from './styles';
@@ -9,6 +9,7 @@ import CircularButtonWithIcon from '../../../components/atoms/circular-button-ic
 import { DeleteIcon, PlaceIcon, StarGreyIcon, BusinessIcon } from '../../../assets/icons';
 import Avatar from '../../../components/atoms/avatar';
 import { InitRealm } from '../../../infra/realm';
+import { AuthenticatedContext } from '../../../infra/context/authenticated';
 
 interface CardProps {
   card: {
@@ -26,6 +27,8 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ card }) => {
   const navigation = useNavigation()
+
+  const { setUser } = useContext(AuthenticatedContext)
 
   const Delete = async () => {
     const realm = await InitRealm()
