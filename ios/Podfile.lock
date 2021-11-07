@@ -20,6 +20,11 @@ PODS:
   - Firebase/Crashlytics (8.9.0):
     - Firebase/CoreOnly
     - FirebaseCrashlytics (~> 8.9.0)
+  - Firebase/RemoteConfig (8.9.0):
+    - Firebase/CoreOnly
+    - FirebaseRemoteConfig (~> 8.9.0)
+  - FirebaseABTesting (8.9.0):
+    - FirebaseCore (~> 8.0)
   - FirebaseAnalytics (8.9.1):
     - FirebaseAnalytics/AdIdSupport (= 8.9.1)
     - FirebaseCore (~> 8.0)
@@ -59,6 +64,12 @@ PODS:
     - GoogleUtilities/Environment (~> 7.6)
     - GoogleUtilities/UserDefaults (~> 7.6)
     - PromisesObjC (< 3.0, >= 1.2)
+  - FirebaseRemoteConfig (8.9.0):
+    - FirebaseABTesting (~> 8.0)
+    - FirebaseCore (~> 8.0)
+    - FirebaseInstallations (~> 8.0)
+    - GoogleUtilities/Environment (~> 7.6)
+    - "GoogleUtilities/NSData+zlib (~> 7.6)"
   - Flipper (0.99.0):
     - Flipper-Folly (~> 2.6)
     - Flipper-RSocket (~> 1.4)
@@ -452,6 +463,10 @@ PODS:
     - Firebase/Crashlytics (= 8.9.0)
     - React-Core
     - RNFBApp
+  - RNFBRemoteConfig (13.0.1):
+    - Firebase/RemoteConfig (= 8.9.0)
+    - React-Core
+    - RNFBApp
   - RNScreens (3.9.0):
     - React-Core
     - React-RCTImage
@@ -528,6 +543,7 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBCrashlytics (from `../node_modules/@react-native-firebase/crashlytics`)"
+  - "RNFBRemoteConfig (from `../node_modules/@react-native-firebase/remote-config`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -538,11 +554,13 @@ SPEC REPOS:
   trunk:
     - CocoaAsyncSocket
     - Firebase
+    - FirebaseABTesting
     - FirebaseAnalytics
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCrashlytics
     - FirebaseInstallations
+    - FirebaseRemoteConfig
     - Flipper
     - Flipper-Boost-iOSX
     - Flipper-DoubleConversion
@@ -633,6 +651,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBCrashlytics:
     :path: "../node_modules/@react-native-firebase/crashlytics"
+  RNFBRemoteConfig:
+    :path: "../node_modules/@react-native-firebase/remote-config"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNSentry:
@@ -651,11 +671,13 @@ SPEC CHECKSUMS:
   FBLazyVector: 500821d196c3d1bd10e7e828bc93ce075234080f
   FBReactNativeSpec: 74c869e2cffa2ffec685cd1bac6788c021da6005
   Firebase: 13d8d96499e2635428d5bf0ec675df21f95d9a95
+  FirebaseABTesting: 9de50b34bf9eb4a07d4edb7af82c14152fd905aa
   FirebaseAnalytics: 4ab446ce08a3fe52e8a4303dd997cf26276bf968
   FirebaseCore: 599ee609343eaf4941bd188f85e3aa077ffe325b
   FirebaseCoreDiagnostics: 5daa63f1c1409d981a2d5007daa100b36eac6a34
   FirebaseCrashlytics: 40efbd81157dae307ec95612fa1328347284d2c2
   FirebaseInstallations: caa7c8e0d3e2345b8829d2fa9ca1b4dfbf2fcc85
+  FirebaseRemoteConfig: a75c1bd44ebd3ed4ad3fa1ff09414a8b133be405
   Flipper: 30e8eeeed6abdc98edaf32af0cda2f198be4b733
   Flipper-Boost-iOSX: fd1e2b8cbef7e662a122412d7ac5f5bea715403c
   Flipper-DoubleConversion: 57ffbe81ef95306cc9e69c4aa3aeeeeb58a6a28c
@@ -704,6 +726,7 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: 26f25150da507524a7815f2ada06ca0967f65633
   RNFBApp: 7e150ce2ff2d8a0f9c85e33001a6943b3deacc65
   RNFBCrashlytics: a2f26064887d44d1555a61893bf9129e044466a1
+  RNFBRemoteConfig: 93e6a607fc815b4d50034e5c4b007de9aea97240
   RNScreens: 4d79118be80f79fa1f4aa131909a1d6e86280af3
   RNSentry: 791f73292501ed1b2e95e62e9388b68fcc13261d
   RNSVG: 551acb6562324b1d52a4e0758f7ca0ec234e278f
