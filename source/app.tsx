@@ -5,6 +5,7 @@ import Routes from './routes';
 import { AuthenticatedProvider } from './infra/context/authenticated';
 import { NavigationContainer } from '@react-navigation/native';
 import crashlytics from '@react-native-firebase/crashlytics';
+import codePush from 'react-native-code-push'
 
 const App = () => {
 
@@ -24,4 +25,6 @@ const App = () => {
 };
 
 
-export default App;
+export default codePush({
+  checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
+})(App)

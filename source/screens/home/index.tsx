@@ -39,7 +39,8 @@ const HomeScreen: React.FC = ({ navigation }) => {
 
   return (
     <BaseTemplate>
-      {showFeature !== false && <Button children="Crashar App" onPress={Crashar} />}
+      {/* {showFeature !== false && <Button children="Crashar App" onPress={Crashar} />} */}
+
       {users ? <CardList cards={users} /> : <Title>Nada aqui</Title>}
     </BaseTemplate>
   )
