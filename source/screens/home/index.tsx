@@ -7,6 +7,7 @@ import { Title } from '../../components/theme/fonts.theme';
 import crashlytics from '@react-native-firebase/crashlytics';
 import Button from '../../components/atoms/button';
 import remoteConfig from '@react-native-firebase/remote-config';
+import { Text } from 'react-native';
 
 
 
@@ -15,6 +16,7 @@ const HomeScreen: React.FC = ({ navigation }) => {
   const { setUser } = useContext(AuthenticatedContext)
   const [users, setUsers] = useState(null)
   const [showFeature, setShowFeature] = useState(false)
+
   useEffect(() => {
     async function loadRepositories() {
       const realm = await InitRealm();
@@ -24,9 +26,11 @@ const HomeScreen: React.FC = ({ navigation }) => {
     loadRepositories();
 
     (async () => {
-      const isSubscrbed = await remoteConfig().getValue('show_clean_cache')
-      console.log(isSubscrbed)
-      setShowFeature(isSubscrbed._value)
+      const ShowButtonCrash = await remoteConfig().getBoolean("show_crash_button");
+      const value = await remoteConfig().getValue('show_crash_button')
+      console.log(value)
+      console.log(ShowButtonCrash)
+      setShowFeature(ShowButtonCrash)
     })()
 
   }, [])
@@ -39,7 +43,7 @@ const HomeScreen: React.FC = ({ navigation }) => {
 
   return (
     <BaseTemplate>
-      {/* {showFeature !== false && <Button children="Crashar App" onPress={Crashar} />} */}
+      {showFeature !== false && <Button children="Crashar App" onPress={Crashar} />}
 
       {users ? <CardList cards={users} /> : <Title>Nada aqui</Title>}
     </BaseTemplate>
