@@ -6,19 +6,20 @@ import { AuthenticatedProvider } from './infra/context/authenticated';
 import { NavigationContainer } from '@react-navigation/native';
 import crashlytics from '@react-native-firebase/crashlytics';
 import codePush from 'react-native-code-push'
+import RemoteConfigProvider from './infra/context/remote-config';
 
 const App = () => {
 
-  useEffect(() => {
-    crashlytics().log('App mounted.');
-  }, []);
+  useEffect(() => { crashlytics().log('App mounted.') }, []);
 
   return (
     <ApolloProvider client={client}>
       <AuthenticatedProvider>
-        <NavigationContainer>
-          <Routes />
-        </NavigationContainer>
+        <RemoteConfigProvider>
+          <NavigationContainer>
+            <Routes />
+          </NavigationContainer>
+        </RemoteConfigProvider>
       </AuthenticatedProvider>
     </ApolloProvider>
   );

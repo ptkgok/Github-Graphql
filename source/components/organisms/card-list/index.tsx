@@ -2,7 +2,7 @@ import Card from '../../../components/molecules/card';
 import React from 'react';
 import { FlatList, SafeAreaView, View } from 'react-native';
 
-const CardList: React.FC = ({ cards }) => {
+const CardList: React.FC<any> = ({ cards }) => {
   return (
     <SafeAreaView>
       <FlatList
