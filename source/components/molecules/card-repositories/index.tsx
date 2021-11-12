@@ -18,13 +18,13 @@ interface Props {
 }
 
 const CardRepositories: React.FC<Props> = ({ infos }) => {
-  let a = moment(new Date(infos.updatedAt).toLocaleString("pt-BR").split(' '), 'D/M/YYYY');
-  let b = moment(new Date().toLocaleString("pt-BR").split(' '), 'D/M/YYYY');
-  let diffDays = b.diff(a, 'days');
-  let diffMonths = b.diff(a, 'months');
-  let diffYears = b.diff(a, 'years');
-  let diffHours = b.diff(a, 'hours');
-
+  let lastUpdate = moment(new Date(infos.updatedAt).toLocaleString("pt-BR").split(' '), 'D/M/YYYY');
+  let nowTime = moment(new Date().toLocaleString("pt-BR").split(' '), 'D/M/YYYY');
+  let diffDays = nowTime.diff(lastUpdate, 'days');
+  // let diffMonths = b.diff(a, 'months');
+  // let diffYears = b.diff(a, 'years');
+  // let diffHours = b.diff(a, 'hours');
+  console.log(diffDays)
   return (
     <CardStyle.Container>
       <GridRow justify="space-between">

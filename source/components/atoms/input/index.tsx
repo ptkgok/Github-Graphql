@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './styles';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { Image } from 'react-native';
 import { AvatarIcon } from '../../../assets/icons';
 

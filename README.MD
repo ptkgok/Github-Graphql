@@ -11,14 +11,22 @@ The idea is to create an app where users can log in with their github accounts, 
   - Creation of interface according to prototype
 
 **Tech**
- - [x] Graphql (Client with Apollo)
- - [x] Typescript
- - [x] React Native (CLI)
- - [x] Analytics Crashlytics
- - [x] CodePush
- - [~] RemoteConfig
- - [x] RealmDB
+  [x] Graphql (Client with Apollo)
 
+  [x] Typescript
+
+  [x] React Native (CLI)
+
+  [x] Analytics Crashlytics
+
+  [x] CodePush
+
+  [x] RemoteConfig
+
+  [x] RealmDB
+
+  [x] Sentry
+  
 **Dev(s)**
 - Patrick Rocha Moreira
 

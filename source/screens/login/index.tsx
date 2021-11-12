@@ -12,11 +12,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import CleanCache from '../../utils/clean-cache';
 import { AuthenticatedContext } from '../../infra/context/authenticated';
 import { InitRealm } from '../../infra/realm';
+import { RemoteConfigContext } from '../../infra/context/remote-config';
 
 
 const LoginScreen: React.FC = ({ navigation }) => {
   const [login, setLogin] = React.useState('');
   const { setUser } = useContext(AuthenticatedContext)
+  const { SHOW_CRASH_BUTTON } = useContext(RemoteConfigContext)
 
   const [getUser, { loading, error, data }] = useLazyQuery(GET_USERS);
 
@@ -43,14 +45,15 @@ const LoginScreen: React.FC = ({ navigation }) => {
     <LoginTemplate>
       <Image source={Logo} width={197.85} height={80} style={{ position: 'absolute', top: "15%" }} />
       <GridColumn>
-        <CleanCache />
-        <GridColumn>
+        {SHOW_CRASH_BUTTON === "true" && <CleanCache />}
+        <GridColumn style={{ marginBottom: 32, marginTop: 10 }}>
+          <Text>Torquarto</Text>
           <Text>{error && error.message}</Text>
           <Text>{loading && "loading"}</Text>
-          <FontsTheme.Title margin="10px 0%" children="Buscar usuário" />
+          <FontsTheme.Title children="Buscar usuário" />
           <FontsTheme.Description children="Crie sua conta através do seu usuário do GitHub" />
         </GridColumn>
-        <GridRow margin="10% 0%">
+        <GridRow style={{ marginBottom: 24 }}>
           <Input placeholder="@username" onChangeText={(text) => setLogin(text)} />
         </GridRow>
         <Button children="Cadastrar" onPress={() => getUser({ variables: { login: login } })} />
