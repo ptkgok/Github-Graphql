@@ -9,6 +9,7 @@ import {RemoteConfigContext} from '../../infra/context/remote-config';
 
 const HomeScreen: React.FC = () => {
   const {SHOW_CRASH_BUTTON} = useContext(RemoteConfigContext);
+
   const [users, setUsers] = useState(null);
 
   useEffect(() => {

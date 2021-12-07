@@ -1,62 +1,74 @@
-import React, { useCallback, useContext } from 'react';
-import { Image, Text, TouchableOpacity } from 'react-native';
-import { useLazyQuery } from '@apollo/client';
+import React, {useCallback, useContext} from 'react';
+import {Image, Text, TouchableOpacity} from 'react-native';
+import {useLazyQuery} from '@apollo/client';
 import Button from '../../components/atoms/button';
-import Logo from '../../assets/github_logo.png'
+import Logo from '../../assets/github_logo.png';
 import Input from '../../components/atoms/input';
-import { GridColumn, GridRow } from '../../components/templates/grids';
-import { FontsTheme } from '../../components/theme';
+import {GridColumn, GridRow} from '../../components/templates/grids';
+import {FontsTheme} from '../../components/theme';
 import LoginTemplate from '../../components/templates/login';
-import { GET_USERS } from '../../infra/graphql/querys/get-users';
+import {GET_USERS} from '../../infra/graphql/querys/get-users';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CleanCache from '../../utils/clean-cache';
-import { AuthenticatedContext } from '../../infra/context/authenticated';
-import { InitRealm } from '../../infra/realm';
-import { ArrowBackIcon } from '../../assets/icons';
+import {AuthenticatedContext} from '../../infra/context/authenticated';
+import {InitRealm} from '../../infra/realm';
+import {ArrowBackIcon} from '../../assets/icons';
 
-
-const AddUserScreen: React.FC = ({ navigation }) => {
+const AddUserScreen: React.FC = ({navigation}) => {
   const [login, setLogin] = React.useState('');
 
-  const [getUser, { loading, error, data }] = useLazyQuery(GET_USERS);
+  const [getUser, {loading, error, data}] = useLazyQuery(GET_USERS);
 
   if (data) {
     (async () => {
-      const realm = await InitRealm()
+      const realm = await InitRealm();
       const user = {
         ...data.user,
-        starredRepositories: data.user.starredRepositories.totalCount
+        starredRepositories: data.user.starredRepositories.totalCount,
       };
       realm.write(() => {
-        realm.create('User', user)
-      })
-      navigation.reset({ routes: [{ name: 'Home' }] });
-    })()
+        realm.create('User', user);
+      });
+      navigation.reset({routes: [{name: 'Home'}]});
+    })();
   }
 
   return (
     <LoginTemplate>
-      <TouchableOpacity onPress={() => navigation.goBack()} style={{ position: 'absolute', top: "10%", left: 25 }}>
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={{position: 'absolute', top: '10%', left: 25}}>
         <Image source={ArrowBackIcon} width={32} height={32} />
       </TouchableOpacity>
-      <Image source={Logo} width={197.85} height={80} style={{ position: 'absolute', top: "20%", left: 25 }} />
+      <Image
+        source={Logo}
+        width={197.85}
+        height={80}
+        style={{position: 'absolute', top: '20%', left: 25}}
+      />
       <GridColumn>
-        <GridColumn style={{ marginBottom: 32, marginTop: 10 }}>
+        <GridColumn style={{marginBottom: 32, marginTop: 10}}>
           <Text>{error && error.message}</Text>
-          <Text>{loading && "loading"}</Text>
+          <Text>{loading && 'loading'}</Text>
           <FontsTheme.Title children="Buscar usuário" />
           <FontsTheme.Description children="Adicione seus novos usuários do GitHub" />
         </GridColumn>
-        <GridRow style={{ marginBottom: 24 }}>
-          <Input placeholder="@username" onChangeText={(text) => setLogin(text)} />
+        <GridRow style={{marginBottom: 24}}>
+          <Input
+            placeholder="@username"
+            onChangeText={text => setLogin(text)}
+          />
         </GridRow>
-        <Button children="Cadastrar" onPress={() => getUser({ variables: { login: login } })} />
+        <Button
+          children="Cadastrar"
+          onPress={() => getUser({variables: {login: login}})}
+        />
       </GridColumn>
-      <GridRow style={{ position: 'absolute', bottom: 32 }}>
+      <GridRow style={{position: 'absolute', bottom: 32}}>
         <Text>Termos de politica e privacidade</Text>
       </GridRow>
     </LoginTemplate>
-  )
-}
+  );
+};
 
 export default AddUserScreen;
