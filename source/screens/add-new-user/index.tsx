@@ -41,13 +41,13 @@ const AddUserScreen: React.FC = ({ navigation }) => {
       </TouchableOpacity>
       <Image source={Logo} width={197.85} height={80} style={{ position: 'absolute', top: "20%", left: 25 }} />
       <GridColumn>
-        <GridColumn>
+        <GridColumn style={{ marginBottom: 32, marginTop: 10 }}>
           <Text>{error && error.message}</Text>
           <Text>{loading && "loading"}</Text>
-          <FontsTheme.Title margin="10px 0%" children="Buscar usuário" />
+          <FontsTheme.Title children="Buscar usuário" />
           <FontsTheme.Description children="Adicione seus novos usuários do GitHub" />
         </GridColumn>
-        <GridRow margin="10% 0%">
+        <GridRow style={{ marginBottom: 24 }}>
           <Input placeholder="@username" onChangeText={(text) => setLogin(text)} />
         </GridRow>
         <Button children="Cadastrar" onPress={() => getUser({ variables: { login: login } })} />

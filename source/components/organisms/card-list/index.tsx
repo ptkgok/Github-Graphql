@@ -1,19 +1,20 @@
 import Card from '../../../components/molecules/card';
 import React from 'react';
-import { FlatList, SafeAreaView, View } from 'react-native';
+import {FlatList, SafeAreaView, View} from 'react-native';
 
-const CardList: React.FC = ({ cards }) => {
+const CardList: React.FC<any> = ({cards}) => {
   return (
     <SafeAreaView>
       <FlatList
-        ItemSeparatorComponent={() => <View style={{ margin: "5%" }} />}
+        ItemSeparatorComponent={() => <View style={{margin: '5%'}} />}
         data={cards}
-        renderItem={({ item }) => <Card card={item} />}
-        keyExtractor={(item) => String(item.id)}
+        renderItem={({item}) => {
+          return item ? <Card card={item} /> : console.log('nenhum usuario');
+        }}
+        keyExtractor={item => String(item.id)}
       />
     </SafeAreaView>
-
-  )
-}
+  );
+};
 
 export default CardList;

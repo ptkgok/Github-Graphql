@@ -1,7 +1,13 @@
 import React from 'react';
 import * as S from './styles';
 
-const Button: React.FC = ({ children, ...rest }) => {
+interface ButtonProps {
+  children: React.ReactNode;
+  onPress?: () => void;
+  type?: 'button' | 'submit' | 'reset';
+}
+
+const Button: React.FC<ButtonProps> = ({ children, ...rest }) => {
   return (
     <S.Container  {...rest}>
       <S.Title>{children}</S.Title>
