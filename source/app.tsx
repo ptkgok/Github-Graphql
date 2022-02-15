@@ -11,7 +11,7 @@ import * as Sentry from '@sentry/react-native';
 
 const App = () => {
   Sentry.init({
-    dsn: 'https://83a704a6ea5a4beabf9f71088e81fa79@o1057849.ingest.sentry.io/6044912',
+    dsn: env.process.DSN_SENTRY,
     tracesSampleRate: 1.0,
   });
   useEffect(() => {
